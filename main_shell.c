@@ -11,13 +11,12 @@ int main(void)
 	char *line;
 	char **args;
 
-	signal(SIGINT, ctrl_c);
 	while (status)
 	{
 		status = isatty(0);
 
 		if (status == 1)
-			write(1, "$ ", 2);
+			write(1, "WE LOVE SIPHAN ", 15);
 
 		line = func_read();
 		if (line == NULL || (_strcmp(line, "exit") == 0))
