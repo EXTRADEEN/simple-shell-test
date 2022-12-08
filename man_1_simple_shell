@@ -1,0 +1,102 @@
+./" This is the man page of the simple_shell program, called hsh
+.TH simple_shell "09-12-222" "V1.0" "simple_shell man page"
+
+
+.SH NAME
+
+hsh \- simple_shell project
+
+hsh : command line interpreter for the simple_shell project
+
+
+.SH SYNOPSIS
+
+- run "./hsh" (interactive mode)
+
+- run  "echo "/bin/(command)" | ./hsh" (non-interactive mode)
+
+
+.SH DESCRIPTION
+
+hsh is a part of the simple_shell project, a simple and limited recreation of the Unix shell program.
+
+hsh permits to run simple_shell in both interactive and non-interactive mode.
+
+It reads and implements basic commands input by the user.
+
+
+.SH COMPILATION
+
+hsh is compiled on UBUNTU 20.04.4 LTS with GCC 9.4.0., and flags -Wall, -Werror, -Wextra, and -pedantic.
+
+The prompt '♥♥ WE LOVE SIPHAN ♥♥ ' will appear on terminal. You could enter commands following the prompt. Once you have entered the commands you execute the commands finishing by pressing 'ENTER' key.
+
+
+.SH USAGE
+
+When typing a command, simple_shell does these following steps :
+
+- it tokenizes the string that represents the command which has been entered, and an array of pointer is created
+
+- it looks if the command is an alias, or a buit-in command that is placed on the PATH variable or not,
+  by merging the pointer of the command with another pointer of each directory placed in PATH
+  (each folder in the environment PATH is separated by the ':' symbol)
+
+- if a match between the 2 pointers is finded, it executes the command by forking the program that is running.
+  The process creates another program, that is the same, but the value of the PID differ
+  (it is the concept of 'father process' and 'child process')
+
+- then, after this execution, the shell program shutdown the search, frees the memory, and put again the prompt for the next input of the user.
+
+
+
+.SH FEATURES
+
+* This program displays a prompt and wait for the user to type a command. A command line always ends with a new line (when user push ENTER key).
+
+* The prompt is displayed again each time a command has been executed.
+
+* When the user enters exit, shell will end and returns the status 0.
+
+* When the user enters exit [status], Shell will end and return the inputed status, where status is a value from 0 to 255.
+
+* The user could stop the program using Ctrl+D (end of file).
+
+* The shell handles command lines with arguments and pathways.
+
+* The program prints the current enviroment when the user types env.
+
+* If an executable cannot be found, It prints an error message and display the prompt again.
+
+* This shell does NOT support pipes |, shell logical operators as && or ||, neither commands separator ;.
+
+
+
+.SH EXAMPLES
+
+root@user-name:~/holbertonschool-simple_shell# ./hsh
+
+♥♥ WE LOVE SIPHAN ♥♥ (enter your command here, for example ->  ls)
+
+♥♥ WE LOVE SIPHAN ♥♥ AUTHORS  README.md  man_1_simple_shell
+
+♥♥ WE LOVE SIPHAN ♥♥ pwd
+
+♥♥ WE LOVE SIPHAN ♥♥ /root/holbertonschool-simple_shell
+
+♥♥ WE LOVE SIPHAN ♥♥
+
+^D
+(ctrl + D to quit the program)
+
+root@user-name:~/holbertonschool-simple_shell# echo "/bin/ls" | ./hsh
+
+AUTHORS  README.md  man_1_simple_shell
+
+root@user-name:~/holbertonschool-simple_shell#
+
+
+.SH AUTHORS
+
+
+Simon Richard and Dinu Mira
